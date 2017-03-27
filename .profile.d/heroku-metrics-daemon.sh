@@ -12,7 +12,7 @@ export HEROKU_PROM_METRICS_PORT=${HEROKU_METRICS_PROM_PORT}
 
 if [ -f pom.xml ]; then
     export JAVA_TOOL_OPTIONS="-javaagent:bin/heroku-metrics-agent.jar ${JAVA_TOOL_OPTIONS}"
-    AGENTMON_FLAGS="-prom-url http://localhost:${HEROKU_METRICS_PROM_PORT}${HEROKU_METRICS_PROM_ENDPOINT}"
+    AGENTMON_FLAGS="-prom-url http://localhost:${PORT}${HEROKU_METRICS_PROM_ENDPOINT}"
 else
     AGENTMON_FLAGS="-statsd-addr :${PORT}"
 fi
