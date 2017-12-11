@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# don't do anything if we don't have a metrics url.
-if [[ -z "$HEROKU_METRICS_URL" ]] || [[ "${DYNO}" = run\.* ]]; then
+if [[ -z "$HEROKU_METRICS_URL" ]] || # don't run agentmon if there's no metrics URL
+   [[ "${DYNO}" = run\.* ]] || # don't run agentmon for one-off dynos
+   [[ -d ${HOME}/.jdk ]]; then # don't run agentmon for Java apps
     return 0
 fi
-
 
 STARTTIME=$(date +%s)
 BUILD_DIR=/tmp
